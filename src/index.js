@@ -9,6 +9,7 @@ const container = document.querySelector('.container');
 const target = document.querySelector('.js-guard');
 const api = new filmAPI();
 
+
 new SlimSelect({
     select: '#selectElement',
     settings: {
@@ -66,6 +67,7 @@ function handlerLoadMore(entries) {
         }
     })
 };
+
 
 
 

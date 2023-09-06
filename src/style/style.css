@@ -1,3 +1,20 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p
+/* ul,
+li { */
+   { margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
 .container{
     display: flex;
     flex-wrap: wrap;
@@ -10,15 +27,24 @@ img{
     display: block;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    width: 300px;
 }
 
 .item {
     width: 300px;
+    
+}
+
+.item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .title{
     text-align: center;
     font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .card-info {
@@ -26,10 +52,33 @@ img{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 150px;
+    background-color: whitesmoke;
 }
 
 .card-info-val{
     text-align: center;
-    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
 }
+
+.main-title-container{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aquamarine;
+    text-align: center;
+    height: 100px;
+    width: 50%;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+
+.main-title{
+    padding-top: 10px;
+    font-size: 50px;
+    color: rgb(107, 105, 105);
+}
+
+
 
