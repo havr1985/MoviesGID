@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://havr1985.github.io/testAPI",
+  "homepage": "https://havr1985.github.io/MoviesGID",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /testAPI/"
+    "build": "parcel build src/*.html --public-url /MoviesGID/"
   },
   "repository": {
     "type": "git",
