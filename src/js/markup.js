@@ -1,7 +1,7 @@
 const defaultsPoster = "https://www.csaff.org/wp-content/uploads/csaff-no-poster.jpg";
 
 export function markUpMovie(arr) {
-    return arr.map(({ poster_path, release_date, original_title, vote_average }) => `<li class="item">
+    return arr.map(({ poster_path, release_date, original_title, vote_average, id }) => `<li data-id="${id}" class="item js-item">
         <img src="${
         poster_path
           ? "https://image.tmdb.org/t/p/w300" + poster_path
@@ -11,12 +11,13 @@ export function markUpMovie(arr) {
           <div class="card-info-val"
           <p class="date">RELEASE: ${release_date}</p>
           <p class="average">AVERAGE: ${vote_average}</p></div>
+          <button class="add-btn js-add-btn">Add favorite</button>
         </div>
       </li>`).join(" ");
 }
 
 export function markUpPeople(arr) {
-    return arr.map(({ profile_path, original_name, known_for_department, popularity }) => `<li class="item">
+    return arr.map(({ profile_path, original_name, known_for_department, popularity, id }) => `<li data-id="${id}" class="item js-item" >
         <img src="${
         profile_path
           ? "https://image.tmdb.org/t/p/w300" + profile_path
@@ -26,12 +27,13 @@ export function markUpPeople(arr) {
           <div class="card-info-val"
           <p class="date">POSITION: ${known_for_department}</p>
           <p class="average">POPULARITY: ${popularity}</p></div>
+          <button class="add-btn js-add-btn">Add favorite</button>
         </div>
       </li>`).join(' ');
 }
 
 export function markUpTv(arr) {
-    return arr.map(({poster_path, original_name, first_air_date, vote_average}) => `<li class="item">
+    return arr.map(({poster_path, original_name, first_air_date, vote_average, id}) => `<li data-id="${id}" class="item js-item">
         <img src="${
         poster_path
           ? "https://image.tmdb.org/t/p/w300" + poster_path
@@ -41,6 +43,7 @@ export function markUpTv(arr) {
           <div class="card-info-val"
           <p class="date">FIRST AIR DATE: ${first_air_date}</p>
           <p class="average">AVERAGE: ${vote_average}</p></div>
+          <button class="add-btn js-add-btn">Add favorite</button>
         </div>
       </li>`).join(' ');
 }

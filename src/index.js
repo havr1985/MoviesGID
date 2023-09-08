@@ -8,6 +8,7 @@ const select = document.querySelector('.category-select');
 const container = document.querySelector('.container');
 const target = document.querySelector('.js-guard');
 const api = new filmAPI();
+const cardArr = [];
 
 
 new SlimSelect({
@@ -19,6 +20,8 @@ new SlimSelect({
 })
 
 select.addEventListener('change', onChange);
+container.addEventListener('click', handlerAdd);
+
 
 function onChange(event) {
     container.innerHTML = '';
@@ -31,7 +34,7 @@ function onChange(event) {
     loadCards();
 }
 
-var options = {
+const options = {
   rootMargin: "300px",
 };
 const observer = new IntersectionObserver(handlerLoadMore, options);
@@ -41,6 +44,7 @@ async function loadCards() {
         const cards = await api.loadAPI();
         if (api.CHECKED === 'movie') {
             container.insertAdjacentHTML('beforeend', markUpMovie(cards.results));
+            
         };
         if (api.CHECKED === 'person') {
             container.insertAdjacentHTML('beforeend', markUpPeople(cards.results));
@@ -67,6 +71,36 @@ function handlerLoadMore(entries) {
         }
     })
 };
+
+function handlerAdd(event) {
+    if (!event.target.classList.contains('js-add-btn')) {
+        return;
+    }
+
+    const favCard = event.target.closest('.js-item');
+    const favCardId = Number(favCard.dataset.id);
+    addFavorite(favCardId);
+    
+}
+
+async function addFavorite(favCardId) {
+    try {
+        const fcards = await api.loadAPI();
+        const currentCard = fcards.results.find(({ id }) => id === favCardId);
+        const idx = cardArr.findIndex(({ id }) => id === favCardId);
+
+        if (idx !== -1) {
+            return
+        } else {
+            cardArr.push(currentCard);
+            console.log(cardArr)
+        }
+    
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 
 

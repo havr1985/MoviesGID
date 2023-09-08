@@ -5,8 +5,6 @@ h4,
 h5,
 h6,
 p
-/* ul,
-li { */
    { margin: 0;
     padding: 0;
 }
@@ -59,7 +57,7 @@ img{
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 
 }
 
