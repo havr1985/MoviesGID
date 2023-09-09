@@ -2,13 +2,14 @@ import { filmAPI } from "./js/films-api";
 import { markUpMovie } from "./js/markup";
 import { markUpPeople } from "./js/markup";
 import { markUpTv } from "./js/markup";
+import common from './js/common.json'
 import SlimSelect from 'slim-select'
 
 const select = document.querySelector('.category-select');
 const container = document.querySelector('.container');
 const target = document.querySelector('.js-guard');
 const api = new filmAPI();
-const cardArr = [];
+const cardArr = JSON.parse(localStorage.getItem(common.LS_CARDS)) ?? [];
 
 
 new SlimSelect({
@@ -95,6 +96,9 @@ async function addFavorite(favCardId) {
             cardArr.push(currentCard);
             console.log(cardArr)
         }
+
+        localStorage.setItem(common.LS_CARDS, JSON.stringify(cardArr));
+        console.log(localStorage)
     
     } catch (error) {
         console.log(error);
