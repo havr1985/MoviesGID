@@ -4,7 +4,10 @@ import { favMarkUpMovie } from './favmarkup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
-const favCard = JSON.parse(localStorage.getItem(common.LS_CARDS)) ?? [];
+let favCard = JSON.parse(localStorage.getItem(common.LS_CARDS));
+if (!favCard) {
+  favCard = [];
+}
 const list = document.querySelector('.container');
 const clear = document.querySelector('.js-clear-btn');
 
@@ -28,7 +31,6 @@ function delCards(event) {
   if (!event.target.classList.contains('js-del-btn')) {
         return;
     }
-  console.dir(favCard)
   const favCardId = Number(favCardDel.dataset.id);
   favCard.forEach(function(elm, index) {
     if (favCardId === elm.id) {

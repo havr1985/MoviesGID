@@ -4,12 +4,18 @@ import common from './js/common.json';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
-const select = document.querySelector('.category-select');
+
 const container = document.querySelector('.container');
 const target = document.querySelector('.js-guard');
 const api = new filmAPI();
 api.PAGE = 1;
-const cardArr = JSON.parse(localStorage.getItem(common.LS_CARDS)) ?? [];
+const arr = [];
+let cardArr = JSON.parse(localStorage.getItem(common.LS_CARDS));
+if (!cardArr) {
+    cardArr = [];
+};
+
+console.log(cardArr)
 
 container.addEventListener('click', handlerAdd);
 
@@ -25,24 +31,16 @@ async function loadCards() {
         const cards = await api.loadAPI();
 
         container.insertAdjacentHTML('beforeend', markUpMovie(cards.results));
+        console.log(api.PAGE)
             
         observer.observe(target);
-        if (api.PAGE >= cards.total_pages) {
-                observer.unobserve(target);
-            };
+        
     } catch (error) {
         console.log(error)
     }
 }
 
-function handlerLoadMore(entries) {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            api.PAGE += 1;
-            loadCards();
-        }
-    })
-};
+
 
 function handlerAdd(event) {
     if (!event.target.classList.contains('js-add-btn')) {
@@ -52,13 +50,21 @@ function handlerAdd(event) {
     const favCard = event.target.closest('.js-item');
     const favCardId = Number(favCard.dataset.id);
     addFavorite(favCardId);
+    console.log(favCardId)
     
 }
 
 async function addFavorite(favCardId) {
     try {
+        
         const fcards = await api.loadAPI();
-        const currentCard = fcards.results.find(({ id }) => id === favCardId);
+        arr.push(fcards.results);
+            
+            console.log(arr)
+    
+        const currentCard = arr.find(({ id }) => id === favCardId);
+        console.log(currentCard)
+        console.log(favCardId)
         const idx = cardArr.findIndex(({ id }) => id === favCardId);
 
         if (idx !== -1) {
@@ -66,15 +72,40 @@ async function addFavorite(favCardId) {
             return
         } else {
             cardArr.push(currentCard);
+            localStorage.setItem(common.LS_CARDS, JSON.stringify(cardArr));
+            console.log(localStorage)
         }
 
-        localStorage.setItem(common.LS_CARDS, JSON.stringify(cardArr));
+        
     
     } catch (error) {
         console.log(error);
     }
 }
+function handlerLoadMore(entries) {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            
+            loadMoreCards();
+        }
+    })
+};
 
+async function loadMoreCards() {
+    try {
+        api.PAGE += 1;
+        const moreCards = await api.loadAPI();
+
+        container.insertAdjacentHTML('beforeend', markUpMovie(moreCards.results));
+
+        if (api.PAGE >= moreCards.total_pages) {
+                observer.unobserve(target);
+            };
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 
