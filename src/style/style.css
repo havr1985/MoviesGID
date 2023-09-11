@@ -41,11 +41,15 @@ img{
 .title{
     text-align: center;
     font-size: 18px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     border: solid black 1px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -62,20 +66,53 @@ img{
 }
 
 .main-title-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
     background-color: aquamarine;
     text-align: center;
-    height: 100px;
     width: 50%;
+    gap: 10px;
     border-radius: 30px;
-    margin-bottom: 15px;
+    padding-bottom: 10px;
+    
 }
 
 .main-title{
-    padding-top: 10px;
+    
     font-size: 50px;
     color: rgb(107, 105, 105);
+}
+
+.fav-link{
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    
+}
+
+.add-btn{
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    padding: 5px 5px;
+    
+}
+
+.clear-btn{
+    border: none;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+        padding: 5px 5px;
 }
 
 

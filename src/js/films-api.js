@@ -11,15 +11,14 @@ const options = {
 export class filmAPI{
 
     URL = 'https://api.themoviedb.org/3/trending/';
-    CHECKED = 'person';
+
     DATES = 'week';
     PAGE = 1;
     
 async loadAPI() {
 
-    const response = await axios.get(`${this.URL}/${this.CHECKED}/${this.DATES}?page=${this.PAGE}`,options);
-  const data = response.data;
-  console.log(data);
+    const response = await axios.get(`${this.URL}/movie/${this.DATES}?page=${this.PAGE}`,options);
+    const data = response.data;
     return data;
     
 }

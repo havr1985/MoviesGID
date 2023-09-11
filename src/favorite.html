@@ -3,26 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Favorites</title>
     <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="./style/style.css" />
 </head>
 <body>
-<a href="./index.html">HOME</a>
-<button class="js-clear-btn">Clear favorite</button>
-</div>
-    <select id="selectElement" class="category-select">
-      <option data-placeholder="true"></option>
-      <option value="movie" name="movie">Movies</option>
-      <option value="person" name="person">People</option>
-      <option value="tv" name="tv">TV Show</option>
-    </select>
+  <div class="main-title-container">
+    <h1 class="main-title">Movies GID</h1>
+    <p>My favorite movies</p>
+    <a href="./index.html" class="fav-link">HOME</a>
+    <button class="clear-btn js-clear-btn">Clear favorite</button>
+  </div>
 
-<ul class="js-list"></ul>
-
-
-
-
+<ul class="container"></ul>
 
 <script type="module" src="./js/favorite.js"></script>    
 </body>
