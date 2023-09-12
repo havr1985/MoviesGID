@@ -10,12 +10,7 @@ const target = document.querySelector('.js-guard');
 const api = new filmAPI();
 api.PAGE = 1;
 const arr = [];
-let cardArr = JSON.parse(localStorage.getItem(common.LS_CARDS));
-if (!cardArr) {
-    cardArr = [];
-};
-
-console.log(cardArr)
+let cardArr = JSON.parse(localStorage.getItem(common.LS_CARDS)) ?? [];
 
 container.addEventListener('click', handlerAdd);
 
@@ -29,16 +24,16 @@ const observer = new IntersectionObserver(handlerLoadMore, options);
 async function loadCards() {
     try {
         const cards = await api.loadAPI();
+        arr.push(...cards.results);
 
         container.insertAdjacentHTML('beforeend', markUpMovie(cards.results));
-        console.log(api.PAGE)
             
         observer.observe(target);
         
     } catch (error) {
         console.log(error)
     }
-}
+};
 
 
 
@@ -50,21 +45,15 @@ function handlerAdd(event) {
     const favCard = event.target.closest('.js-item');
     const favCardId = Number(favCard.dataset.id);
     addFavorite(favCardId);
-    console.log(favCardId)
-    
-}
+};
 
 async function addFavorite(favCardId) {
     try {
         
         const fcards = await api.loadAPI();
-        arr.push(fcards.results);
-            
-            console.log(arr)
+        arr.push(...fcards.results);
     
         const currentCard = arr.find(({ id }) => id === favCardId);
-        console.log(currentCard)
-        console.log(favCardId)
         const idx = cardArr.findIndex(({ id }) => id === favCardId);
 
         if (idx !== -1) {
@@ -73,7 +62,6 @@ async function addFavorite(favCardId) {
         } else {
             cardArr.push(currentCard);
             localStorage.setItem(common.LS_CARDS, JSON.stringify(cardArr));
-            console.log(localStorage)
         }
 
         
@@ -81,7 +69,7 @@ async function addFavorite(favCardId) {
     } catch (error) {
         console.log(error);
     }
-}
+};
 function handlerLoadMore(entries) {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -105,7 +93,7 @@ async function loadMoreCards() {
     } catch (error) {
         console.log(error)
     }
-}
+};
 
 
 

@@ -4,10 +4,8 @@ import { favMarkUpMovie } from './favmarkup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
-let favCard = JSON.parse(localStorage.getItem(common.LS_CARDS));
-if (!favCard) {
-  favCard = [];
-}
+let favCard = JSON.parse(localStorage.getItem(common.LS_CARDS)) ?? [];
+
 const list = document.querySelector('.container');
 const clear = document.querySelector('.js-clear-btn');
 

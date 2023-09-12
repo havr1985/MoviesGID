@@ -17,7 +17,7 @@ export class filmAPI{
 async loadAPI() {
 
     const response = await axios.get(`${this.URL}/movie/${this.DATES}?page=${this.PAGE}`,options);
-  const data = response.data;
+    const data = response.data;
     return data;
     
 }
